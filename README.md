@@ -20,6 +20,7 @@
   # as per https://docs.docker.com/compose/rails/
 
   ./run.sh
+  # (^ and then ctrl-z to have it run in the background)
 
   rake db:create
 ```
