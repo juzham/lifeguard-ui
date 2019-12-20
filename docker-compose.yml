@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+  dev:
+    build: ./support/dev
+    volumes:
+      - .:/app:Z
+      - $HOME/.docker:/root/.docker:Z
+      - ruby2.6.5-gem-cache:/usr/local/bundle:Z
+    working_dir: /app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    entrypoint: ["/bin/bash", "-c"]
+
+volumes:
+  ruby2.6.5-gem-cache:
+    external: true
